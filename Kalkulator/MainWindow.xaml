@@ -1,0 +1,31 @@
+﻿<Window x:Class="Kalkulator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kalkulator"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Label x:Name="Label" Content="0" Margin="0,0,144,69" />
+        <Button Margin="10,61,455,229" Click="Button_Click_7" Content="7"/>
+        <Button Margin="92,61,377,229" Click="Button_Click_8" Content="8"/>
+        <Button Margin="158,61,307,229" Click="Button_Click_9" Content="9"/>
+        <Button Margin="10,105,455,185" Click="Button_Click_4" Content="4"/>
+        <Button Margin="92,105,377,185"  Click="Button_Click_5" Content="5"/>
+        <Button Margin="158,105,307,185"  Click="Button_Click_6" Content="6"/>
+        <Button Margin="10,155,455,135"  Click="Button_Click_1" Content="1"/>
+        <Button Margin="92,155,377,135"  Click="Button_Click_2" Content="2"/>
+        <Button Margin="158,155,307,135"  Click="Button_Click_3" Content="3"/>
+        <Button Margin="10,205,455,85"  Click="Button_Click_plus_minus" Content="+-"/>
+        <Button Margin="92,205,377,85" Click="Button_Click_0" Content="0"/>
+        <Button Margin="158,205,307,85"  Click="Button_Click_comma" Content=","/>
+        <Button Margin="234,61,231,229" Click="Button_Click_division" Content="/"/>
+        <Button Margin="234,105,231,185" Click="Button_Click_multipication" Content="*"/>
+        <Button Margin="234,155,231,135" Click="Button_Click_minus" Content="-"/>
+        <Button Margin="234,205,231,85" Click="Button_Click_plus" Content="+"/>
+        <Button Margin="308,155,157,85" Click="Button_Click_score" Content="="/>
+        <Button Margin="308,61,157,229" Click="Button_Click_CE" Content="CE"/>
+        <Button Margin="308,105,157,185" Click="Button_Click_C" Content="C"/>
+    </Grid>
+</Window>

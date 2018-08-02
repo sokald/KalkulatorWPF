@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Label x:Name="Label" Content="0" Margin="0,0,144,69" />
+        <Label x:Name="Label" Content="0" />
         <Button Margin="10,61,455,229" Click="Button_Click_7" Content="7"/>
         <Button Margin="92,61,377,229" Click="Button_Click_8" Content="8"/>
         <Button Margin="158,61,307,229" Click="Button_Click_9" Content="9"/>

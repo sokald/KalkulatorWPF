@@ -21,12 +21,12 @@ namespace Kalkulator
     public partial class MainWindow : Window
     {
         // varibles for numbers
-        string stringA, stringB = null;
+        string stringA = null;
 
         // varible for operation name
         string operation = null;
 
-        double doubleA, doubleB = 0;
+        double doubleA = 0;
 
         // varible bool for first or second number
         bool number = false;
@@ -57,7 +57,7 @@ namespace Kalkulator
             else
                 return true;
         }
-
+        // Parse String To Double
         public double ParseStringToDouble(string textFromLabel)
         {
             double number;
@@ -72,7 +72,7 @@ namespace Kalkulator
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
 
-            Label.Content = Label.Content+"7";
+            Label.Content = Label.Content + "7";
         }
 
         //8
@@ -126,7 +126,7 @@ namespace Kalkulator
         // button plus minus
         private void Button_Click_plus_minus(object sender, RoutedEventArgs e)
         {
-            if(Label.Content.ToString().Contains("-") == false)
+            if (Label.Content.ToString().Contains("-") == false)
             {
                 // add minus
                 Label.Content = "-" + Label.Content.ToString();
@@ -134,7 +134,7 @@ namespace Kalkulator
             else
             {
                 // remove minus
-                Label.Content = Label.Content.ToString().Remove(0,1);
+                Label.Content = Label.Content.ToString().Remove(0, 1);
             }
         }
 
@@ -147,28 +147,18 @@ namespace Kalkulator
         //Button_Click_comma
         private void Button_Click_comma(object sender, RoutedEventArgs e)
         {
-            Label.Content = Label.Content + ".";
-        }
-
-        //Button_Click_division
-        private void Button_Click_division(object sender, RoutedEventArgs e)
-        {
-            if (number == false)
+            if (Comma == false)
             {
-                doubleA = ParseStringToDouble(Label.Content.ToString());
-                number = true;
-                operation = "division";
-                Comma = false;
-                Label.Content = null;
+                Label.Content = Label.Content + ",";
+                Comma = true;
             }
-
         }
 
         //button to clear enter
         private void Button_Click_CE(object sender, RoutedEventArgs e)
         {
-            stringA = stringB = null;
-            doubleA = doubleB = 0;
+            stringA = null;
+            doubleA = 0;
             operation = null;
             number = true;
             Comma = false;
@@ -183,34 +173,51 @@ namespace Kalkulator
             Label.Content = null;
         }
 
+        //Button_Click_division
+        private void Button_Click_division(object sender, RoutedEventArgs e)
+        {
+            if (number == false)
+            {
+                CheckOperation();
+                operation = "division";
+            }
+        }
+
+        // check if the operation has been selected
+        public void CheckOperation()
+        {
+            if (Label.Content == null)
+            {
+                MessageBox.Show("operacja juz zostala wybrana");
+            }
+            else
+            {
+                doubleA = ParseStringToDouble(Label.Content.ToString());
+                number = true;
+                Comma = false;
+                Label.Content = null;
+            }
+        }
+
         //Button_Click_multipication
         private void Button_Click_multipication(object sender, RoutedEventArgs e)
         {
-            doubleA = ParseStringToDouble(Label.Content.ToString());
+            CheckOperation();
             operation = "multipication";
-            number = true;
-            Comma = false;
-            Label.Content = null;
         }
 
         //Button_Click_minus
         private void Button_Click_minus(object sender, RoutedEventArgs e)
         {
-            doubleA = ParseStringToDouble(Label.Content.ToString());
+            CheckOperation();
             operation = "minus";
-            number = true;
-            Comma = false;
-            Label.Content = null;
         }
 
         //Button_Click_plus
         private void Button_Click_plus(object sender, RoutedEventArgs e)
         {
-            doubleA = ParseStringToDouble(Label.Content.ToString());
+            CheckOperation();
             operation = "plus";
-            number = true;
-            Comma = false;
-            Label.Content = null;
         }
 
         //Button_Click_score
@@ -223,22 +230,29 @@ namespace Kalkulator
                     MessageBox.Show("wybierz operacje i wprowadz druga liczbe");
                     break;
                 case "division":
-                    score = doubleA / ParseStringToDouble(Label.Content.ToString());
-                    Label.Content = "wynik dzielenia to: " + score.ToString();
+                    if (ParseStringToDouble(Label.Content.ToString()) == 0)
+                    {
+                        MessageBox.Show("nie dzielimy przez 0");
+                    }
+                    else
+                    {
+                        score = doubleA / ParseStringToDouble(Label.Content.ToString());
+                        Label.Content = score.ToString();
+                    }
                     break;
                 case "multipication":
-                    Label.Content = "wynik mnozenia to: " + doubleA * ParseStringToDouble(Label.Content.ToString());
+                    Label.Content = doubleA * ParseStringToDouble(Label.Content.ToString());
                     break;
                 case "minus":
                     score = doubleA - ParseStringToDouble(Label.Content.ToString());
-                    Label.Content = "wynik odejmowania to: " + score.ToString();
+                    Label.Content = score.ToString();
                     break;
                 case "plus":
                     score = doubleA + ParseStringToDouble(Label.Content.ToString());
-                    Label.Content = "wynik dodoawania to: " + score.ToString();
+                    Label.Content = score.ToString();
                     break;
                 default:
-                    MessageBox.Show("blad dzialania programu");
+                    Label.Content = "Blad dzialania programu";
                     break;
             }
         }

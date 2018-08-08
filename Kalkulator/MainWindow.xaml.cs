@@ -33,11 +33,12 @@ namespace Kalkulator
 
         // varible for one comma in number
         bool Comma = false;
-
+        
         public MainWindow()
         {
             InitializeComponent();
-            Label.Content = stringA;
+            LabelForOperation.Content = stringA;
+            TB.AppendText("0");
         }
 
         // function for check first or second number
@@ -58,98 +59,65 @@ namespace Kalkulator
                 return true;
         }
         // Parse String To Double
-        public double ParseStringToDouble(string textFromLabel)
+        public double ParseStringToDouble(string textFromLabelForOperation)
         {
             double number;
-            if (Double.TryParse(textFromLabel, out number))
+            if (Double.TryParse(textFromLabelForOperation, out number))
                 return number;
             else
                 MessageBox.Show("Blad parsowania liczby");
-            return Double.Parse(textFromLabel);
+            return Double.Parse(textFromLabelForOperation);
         }
 
-        //7
-        private void Button_Click_7(object sender, RoutedEventArgs e)
+        //to key
+        public void key(object sender, KeyEventArgs e)
         {
-
-            Label.Content = Label.Content + "7";
+            MessageBox.Show("key");
         }
 
-        //8
-        private void Button_Click_8(object sender, RoutedEventArgs e)
+        // function for numbers
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Label.Content = Label.Content + "8";
+            if(TB.Text == "0" || number == true)
+            {
+                TB.Clear();
+            }
+            Button button = (Button)sender;
+            TB.Text = TB.Text + button.Content;
+            doubleA = ParseStringToDouble(button.Content.ToString());
         }
 
-        //9
-        private void Button_Click_9(object sender, RoutedEventArgs e)
+        // funktion for operation
+        private void Button_Opieration(object sender, RoutedEventArgs e)
         {
-            Label.Content = Label.Content + "9";
-        }
-
-        //4
-        private void Button_Click_4(object sender, RoutedEventArgs e)
-        {
-            Label.Content = Label.Content + "4";
-        }
-
-        //5
-        private void Button_Click_5(object sender, RoutedEventArgs e)
-        {
-            Label.Content = Label.Content + "5";
-        }
-
-        //6
-        private void Button_Click_6(object sender, RoutedEventArgs e)
-        {
-            Label.Content = Label.Content + "6";
-        }
-
-        //1
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Label.Content = Label.Content + "1";
-        }
-
-        //2
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            Label.Content = Label.Content + "2";
-        }
-
-        //3
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            Label.Content = Label.Content + "3";
+            Button button = (Button)sender;
+            //TB.Text = TB.Text + button.Content;
+            operation = button.Content.ToString();
+            LabelForOperation.Content = doubleA + operation;
+            number = true;
         }
 
         // button plus minus
         private void Button_Click_plus_minus(object sender, RoutedEventArgs e)
         {
-            if (Label.Content.ToString().Contains("-") == false)
+            if (LabelForOperation.Content.ToString().Contains("-") == false)
             {
                 // add minus
-                Label.Content = "-" + Label.Content.ToString();
+                LabelForOperation.Content = "-" + LabelForOperation.Content.ToString();
             }
             else
             {
                 // remove minus
-                Label.Content = Label.Content.ToString().Remove(0, 1);
+                LabelForOperation.Content = LabelForOperation.Content.ToString().Remove(0, 1);
             }
         }
-
-        //Button_Click_0
-        private void Button_Click_0(object sender, RoutedEventArgs e)
-        {
-            Label.Content = Label.Content + "0";
-        }
-
+        
         //Button_Click_comma
         private void Button_Click_comma(object sender, RoutedEventArgs e)
         {
             if (Comma == false)
             {
-                Label.Content = Label.Content + ",";
+                LabelForOperation.Content = LabelForOperation.Content + ",";
                 Comma = true;
             }
         }
@@ -162,7 +130,7 @@ namespace Kalkulator
             operation = null;
             number = true;
             Comma = false;
-            Label.Content = null;
+            LabelForOperation.Content = null;
         }
 
         //button to clear last number
@@ -170,7 +138,7 @@ namespace Kalkulator
         {
             number = true;
             Comma = false;
-            Label.Content = null;
+            LabelForOperation.Content = null;
         }
 
         //Button_Click_division
@@ -186,75 +154,82 @@ namespace Kalkulator
         // check if the operation has been selected
         public void CheckOperation()
         {
-            if (Label.Content == null)
+            if (LabelForOperation.Content == null)
             {
                 MessageBox.Show("operacja juz zostala wybrana");
             }
             else
             {
-                doubleA = ParseStringToDouble(Label.Content.ToString());
+                doubleA = ParseStringToDouble(LabelForOperation.Content.ToString());
                 number = true;
                 Comma = false;
-                Label.Content = null;
+                LabelForOperation.Content = null;
             }
         }
 
-        //Button_Click_multipication
-        private void Button_Click_multipication(object sender, RoutedEventArgs e)
-        {
-            CheckOperation();
-            operation = "multipication";
-        }
+        ////Button_Click_multipication
+        //private void Button_Click_multipication(object sender, RoutedEventArgs e)
+        //{
+        //    CheckOperation();
+        //    operation = "multipication";
+        //}
 
-        //Button_Click_minus
-        private void Button_Click_minus(object sender, RoutedEventArgs e)
-        {
-            CheckOperation();
-            operation = "minus";
-        }
+        ////Button_Click_minus
+        //private void Button_Click_minus(object sender, RoutedEventArgs e)
+        //{
+        //    CheckOperation();
+        //    operation = "minus";
+        //}
 
-        //Button_Click_plus
-        private void Button_Click_plus(object sender, RoutedEventArgs e)
-        {
-            CheckOperation();
-            operation = "plus";
-        }
+        ////Button_Click_plus
+        //private void Button_Click_plus(object sender, RoutedEventArgs e)
+        //{
+        //    CheckOperation();
+        //    operation = "plus";
+        //}
+
 
         //Button_Click_score
         private void Button_Click_score(object sender, RoutedEventArgs e)
         {
-            double score;
+            double score = 0;
             switch (operation)
             {
                 case null:
                     MessageBox.Show("wybierz operacje i wprowadz druga liczbe");
                     break;
-                case "division":
-                    if (ParseStringToDouble(Label.Content.ToString()) == 0)
+                case "/":
+                    if (ParseStringToDouble(TB.Text) == 0)
                     {
                         MessageBox.Show("nie dzielimy przez 0");
                     }
                     else
                     {
-                        score = doubleA / ParseStringToDouble(Label.Content.ToString());
-                        Label.Content = score.ToString();
+                        score = doubleA / ParseStringToDouble(TB.Text);
+                        TB.Text = score.ToString();
                     }
                     break;
-                case "multipication":
-                    Label.Content = doubleA * ParseStringToDouble(Label.Content.ToString());
+                case "*":
+                    double scoreMultiplication = doubleA * ParseStringToDouble(TB.Text);
+                    TB.Text = scoreMultiplication.ToString();
                     break;
-                case "minus":
-                    score = doubleA - ParseStringToDouble(Label.Content.ToString());
-                    Label.Content = score.ToString();
+                case "-":
+                    score = doubleA - ParseStringToDouble(TB.Text);
+                    TB.Text = score.ToString();
                     break;
-                case "plus":
-                    score = doubleA + ParseStringToDouble(Label.Content.ToString());
-                    Label.Content = score.ToString();
+                case "+":
+                    score = doubleA + ParseStringToDouble(TB.Text);
+                    TB.Text = score.ToString();
                     break;
                 default:
-                    Label.Content = "Blad dzialania programu";
+                    LabelForOperation.Content = "Blad dzialania programu";
                     break;
             }
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

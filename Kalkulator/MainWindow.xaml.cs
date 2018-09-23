@@ -14,7 +14,9 @@ namespace Kalkulator
         string stringA = null;
 
         // varible for operation name
-        string operation = null;
+        //string operation = null;
+        enum Operation {division, multiplication, minus, plus };
+        Operation operation;
 
         double doubleA = 0;
 
@@ -59,12 +61,6 @@ namespace Kalkulator
             return Double.Parse(textFromLabelForOperation);
         }
 
-        ////to key
-        //public void key(object sender, KeyEventArgs e)
-        //{
-        //    MessageBox.Show("key");
-        //}
-
         // function for numbers
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -85,8 +81,28 @@ namespace Kalkulator
             //TB.Text = TB.Text + button.Content;
 
             doubleA = ParseStringToDouble(TB.Text);
-            operation = button.Content.ToString();
-            LabelForOperation.Content = doubleA + operation;
+            //operation = button.Content.ToString();
+
+            switch(button.Content.ToString())
+            {
+                case "/":
+                    operation = Operation.division;
+                    break;
+                case "*":
+                    operation = Operation.multiplication;
+                    break;
+                case "-":
+                    operation = Operation.minus;
+                    break;
+                case "+":
+                    operation = Operation.plus;
+                    break;
+                default:
+                    MessageBox.Show("blad dzialanai programu");
+                    break;
+            }
+
+            LabelForOperation.Content = doubleA + button.Content.ToString();
             TB.Clear();
         }
 
@@ -120,7 +136,7 @@ namespace Kalkulator
         {
             stringA = null;
             doubleA = 0;
-            operation = null;
+            //operation = null;
             number = true;
             Comma = false;
             LabelForOperation.Content = null;
@@ -141,7 +157,8 @@ namespace Kalkulator
             if (number == false)
             {
                 CheckOperation();
-                operation = "division";
+                //operation = "division";
+                operation = Operation.division;
             }
         }
 
@@ -168,10 +185,10 @@ namespace Kalkulator
             double score = 0;
             switch (operation)
             {
-                case null:
-                    MessageBox.Show("wybierz operacje i wprowadz druga liczbe");
-                    break;
-                case "/":
+                //case null:
+                //    MessageBox.Show("wybierz operacje i wprowadz druga liczbe");
+                //    break;
+                case Operation.division:
                     if (ParseStringToDouble(TB.Text) == 0)
                     {
                         MessageBox.Show("nie dzielimy przez 0");
@@ -182,15 +199,15 @@ namespace Kalkulator
                         TB.Text = score.ToString();
                     }
                     break;
-                case "*":
+                case Operation.multiplication:
                     double scoreMultiplication = doubleA * ParseStringToDouble(TB.Text);
                     TB.Text = scoreMultiplication.ToString();
                     break;
-                case "-":
+                case Operation.minus:
                     score = doubleA - ParseStringToDouble(TB.Text);
                     TB.Text = score.ToString();
                     break;
-                case "+":
+                case Operation.plus:
                     score = doubleA + ParseStringToDouble(TB.Text);
                     TB.Text = score.ToString();
                     break;
@@ -241,11 +258,12 @@ namespace Kalkulator
                 case Key.NumPad3:
                     TB.Text = TB.Text + "3";
                     break;
+                case Key.NumPad0:
+                    TB.Text = TB.Text + "0";
+                    break;
 
-                    //button for division
+                //button for division
                 case Key.Divide:
-                    //MessageBox.Show("bedziemy dzielic");
-                    //Button_Click_division(null, null);
                     Button sender2;
                     sender2 = new Button() { Content = "/" };
                     Button_Opieration(sender2, null);
@@ -255,14 +273,27 @@ namespace Kalkulator
                 case Key.Enter:
                     Button_Click_score(null, null);
                     break;
-                // button for plus
+
+                // button for plus keboard 
                 case Key.OemPlus:
                     sender2 = new Button() { Content = "+" };
                     Button_Opieration(sender2, null);
                     break;
 
-                // button for minus
+                // button for plus keypad  
+                case Key.Add:
+                    sender2 = new Button() { Content = "+" };
+                    Button_Opieration(sender2, null);
+                    break;
+
+                // button for minus keboard
                 case Key.OemMinus:
+                    sender2 = new Button() { Content = "-" };
+                    Button_Opieration(sender2, null);
+                    break;
+
+                // button for minus keypad
+                case Key.Subtract:
                     sender2 = new Button() { Content = "-" };
                     Button_Opieration(sender2, null);
                     break;
@@ -271,6 +302,11 @@ namespace Kalkulator
                 case Key.Multiply:
                     sender2 = new Button() { Content = "*" };
                     Button_Opieration(sender2, null);
+                    break;
+
+                // button for comma
+                case Key.OemComma:
+                    Button_Click_comma(null, null);
                     break;
 
                 default:

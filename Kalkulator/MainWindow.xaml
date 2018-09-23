@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kalkulator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="400">
+        Title="MainWindow" Height="400" Width="400" WindowStartupLocation="CenterScreen">
     <Grid KeyDown="GridKey">
         <Grid.RowDefinitions>
             <RowDefinition Height="5*" />
@@ -22,25 +22,25 @@
             <ColumnDefinition Width="5*" />
         </Grid.ColumnDefinitions>
         <Label x:Name="LabelForOperation" Content="0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5"/>
-        <Button Margin="10" Click="Button_Click" Content="7" Grid.Row="1" Grid.Column="0" />
-        <Button Margin="10" Click="Button_Click" Content="8" Grid.Row="1" Grid.Column="1" />
-        <Button Margin="10" Click="Button_Click" Content="9" Grid.Row="1" Grid.Column="2" />
-        <Button Margin="10" Click="Button_Click" Content="4" Grid.Row="2" Grid.Column="0" />
-        <Button Margin="10" Click="Button_Click" Content="5" Grid.Row="2" Grid.Column="1" />
-        <Button Margin="10" Click="Button_Click" Content="6" Grid.Row="2" Grid.Column="2" />
-        <Button Margin="10" Click="Button_Click" Content="1" Grid.Row="3" Grid.Column="0" />
-        <Button Margin="10" Click="Button_Click" Content="2" Grid.Row="3" Grid.Column="1" />
-        <Button Margin="10" Click="Button_Click" Content="3" Grid.Row="3" Grid.Column="2" />
-        <Button Margin="10" Click="Button_Click" Content="+-" Grid.Row="4" Grid.Column="0" />
-        <Button Margin="10" Click="Button_Click" Content="0" Grid.Row="4" Grid.Column="1" />
-        <Button Margin="10" Click="Button_Click" Content="," Grid.Row="4" Grid.Column="2" />
-        <Button Margin="10" Click="Button_Opieration" Content="/" Grid.Row="1" Grid.Column="3" />
-        <Button Margin="10" Click="Button_Opieration" Content="*" Grid.Row="2" Grid.Column="3" />
-        <Button Margin="10" Click="Button_Opieration" Content="-" Grid.Row="3" Grid.Column="3" />
-        <Button Margin="10" Click="Button_Opieration" Content="+" Grid.Row="4" Grid.Column="3" />
-        <Button Margin="10" Click="Button_Click_score" Content="=" Grid.Row="3" Grid.Column="5" Grid.RowSpan="2" />
-        <Button Margin="10" Click="Button_Click_CE" Content="CE" Grid.Row="1" Grid.Column="5" />
-        <Button Margin="10" Click="Button_Click_C" Content="C" Grid.Row="2" Grid.Column="4" />
+        <Button Margin="10" Click="Button_Click" Content="7" Grid.Row="1" Grid.Column="0" FontWeight="Bold" FontSize="14" />
+        <Button Margin="10" Click="Button_Click" Content="8" Grid.Row="1" Grid.Column="1" FontWeight="Bold" FontSize="14" />
+        <Button Margin="10" Click="Button_Click" Content="9" Grid.Row="1" Grid.Column="2" FontWeight="Bold" FontSize="14" />
+        <Button Margin="10" Click="Button_Click" Content="4" Grid.Row="2" Grid.Column="0" FontWeight="Bold" FontSize="14" />
+        <Button Margin="10" Click="Button_Click" Content="5" Grid.Row="2" Grid.Column="1" FontWeight="Bold" FontSize="14" />
+        <Button Margin="10" Click="Button_Click" Content="6" Grid.Row="2" Grid.Column="2" FontWeight="Bold" FontSize="14" />
+        <Button Margin="10" Click="Button_Click" Content="1" Grid.Row="3" Grid.Column="0" FontWeight="Bold" FontSize="14" />
+        <Button Margin="10" Click="Button_Click" Content="2" Grid.Row="3" Grid.Column="1" FontWeight="Bold" FontSize="14" />
+        <Button Margin="10" Click="Button_Click" Content="3" Grid.Row="3" Grid.Column="2" FontWeight="Bold" />
+        <Button Margin="10" Click="Button_Click" Content="+-" Grid.Row="4" Grid.Column="0" FontWeight="Bold" FontSize="14" />
+        <Button Margin="10" Click="Button_Click" Content="0" Grid.Row="4" Grid.Column="1" FontWeight="Bold" FontSize="14" />
+        <Button Margin="10" Click="Button_Click" Content="," Grid.Row="4" Grid.Column="2" FontWeight="Bold" FontSize="14" />
+        <Button Margin="10" Click="Button_Opieration" Content="/" Grid.Row="1" Grid.Column="3" FontWeight="Bold" FontSize="14" />
+        <Button Margin="10" Click="Button_Opieration" Content="*" Grid.Row="2" Grid.Column="3" FontWeight="Bold" FontSize="14"  />
+        <Button Margin="10" Click="Button_Opieration" Content="-" Grid.Row="3" Grid.Column="3" FontWeight="Bold" FontSize="14" />
+        <Button Margin="10" Click="Button_Opieration" Content="+" Grid.Row="4" Grid.Column="3" FontWeight="Bold" FontSize="14" />
+        <Button Margin="10" Click="Button_Click_score" Content="=" Grid.Row="3" Grid.Column="5" Grid.RowSpan="2" FontWeight="Bold" FontSize="14" />
+        <Button Margin="10" Click="Button_Click_CE" Content="CE" Grid.Row="1" Grid.Column="5" FontWeight="Bold" FontSize="14" />
+        <Button Margin="10" Click="Button_Click_C" Content="C" Grid.Row="2" Grid.Column="4" FontWeight="Bold" FontSize="14" />
         <TextBox x:Name="TB" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" Margin="10,25,10,1" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Right" TextChanged="TextBox_TextChanged" IsReadOnly="True" Height="29" FontSize="20"/>
     </Grid>
 </Window>

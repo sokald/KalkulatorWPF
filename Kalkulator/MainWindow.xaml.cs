@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Kalkulator
 {
@@ -33,7 +23,7 @@ namespace Kalkulator
 
         // varible for one comma in number
         bool Comma = false;
-        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -69,22 +59,23 @@ namespace Kalkulator
             return Double.Parse(textFromLabelForOperation);
         }
 
-        //to key
-        public void key(object sender, KeyEventArgs e)
-        {
-            MessageBox.Show("key");
-        }
+        ////to key
+        //public void key(object sender, KeyEventArgs e)
+        //{
+        //    MessageBox.Show("key");
+        //}
 
         // function for numbers
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if(TB.Text == "0" || number == true)
+            if (TB.Text == "0")
             {
                 TB.Clear();
             }
             Button button = (Button)sender;
-            TB.Text = TB.Text + button.Content;
-            doubleA = ParseStringToDouble(button.Content.ToString());
+            TB.Text = TB.Text + button.Content.ToString();
+            //string a = button.Content.ToString();
+            //doubleA = ParseStringToDouble(button.Content.ToString());
         }
 
         // funktion for operation
@@ -92,9 +83,11 @@ namespace Kalkulator
         {
             Button button = (Button)sender;
             //TB.Text = TB.Text + button.Content;
+
+            doubleA = ParseStringToDouble(TB.Text);
             operation = button.Content.ToString();
             LabelForOperation.Content = doubleA + operation;
-            number = true;
+            TB.Clear();
         }
 
         // button plus minus
@@ -111,7 +104,7 @@ namespace Kalkulator
                 LabelForOperation.Content = LabelForOperation.Content.ToString().Remove(0, 1);
             }
         }
-        
+
         //Button_Click_comma
         private void Button_Click_comma(object sender, RoutedEventArgs e)
         {
@@ -131,6 +124,7 @@ namespace Kalkulator
             number = true;
             Comma = false;
             LabelForOperation.Content = null;
+            TB.Text = null;
         }
 
         //button to clear last number
@@ -167,27 +161,6 @@ namespace Kalkulator
             }
         }
 
-        ////Button_Click_multipication
-        //private void Button_Click_multipication(object sender, RoutedEventArgs e)
-        //{
-        //    CheckOperation();
-        //    operation = "multipication";
-        //}
-
-        ////Button_Click_minus
-        //private void Button_Click_minus(object sender, RoutedEventArgs e)
-        //{
-        //    CheckOperation();
-        //    operation = "minus";
-        //}
-
-        ////Button_Click_plus
-        //private void Button_Click_plus(object sender, RoutedEventArgs e)
-        //{
-        //    CheckOperation();
-        //    operation = "plus";
-        //}
-
 
         //Button_Click_score
         private void Button_Click_score(object sender, RoutedEventArgs e)
@@ -223,6 +196,84 @@ namespace Kalkulator
                     break;
                 default:
                     LabelForOperation.Content = "Blad dzialania programu";
+                    break;
+            }
+        }
+
+        //handling keybord
+        private void GridKey(object sender, KeyEventArgs e)
+        {
+            //clear textBox if is 0 or null
+            if (TB.Text == "0" || number == true)
+            {
+                TB.Clear();
+            }
+
+            //insert number from keybord
+            switch (e.Key)
+            {
+                case Key.NumPad7:
+                    TB.Text = TB.Text + "7";
+                    break;
+                case Key.NumPad8:
+                    TB.Text = TB.Text + "8";
+                    break;
+                case Key.NumPad9:
+                    TB.Text = TB.Text + "9";
+                    break;
+
+                case Key.NumPad4:
+                    TB.Text = TB.Text + "4";
+                    break;
+                case Key.NumPad5:
+                    TB.Text = TB.Text + "5";
+                    break;
+                case Key.NumPad6:
+                    TB.Text = TB.Text + "6";
+                    break;
+
+                case Key.NumPad1:
+                    TB.Text = TB.Text + "1";
+                    break;
+                case Key.NumPad2:
+                    TB.Text = TB.Text + "2";
+                    break;
+                case Key.NumPad3:
+                    TB.Text = TB.Text + "3";
+                    break;
+
+                    //button for division
+                case Key.Divide:
+                    //MessageBox.Show("bedziemy dzielic");
+                    //Button_Click_division(null, null);
+                    Button sender2;
+                    sender2 = new Button() { Content = "/" };
+                    Button_Opieration(sender2, null);
+                    break;
+
+                //button for score
+                case Key.Enter:
+                    Button_Click_score(null, null);
+                    break;
+                // button for plus
+                case Key.OemPlus:
+                    sender2 = new Button() { Content = "+" };
+                    Button_Opieration(sender2, null);
+                    break;
+
+                // button for minus
+                case Key.OemMinus:
+                    sender2 = new Button() { Content = "-" };
+                    Button_Opieration(sender2, null);
+                    break;
+
+                // button for multiplication
+                case Key.Multiply:
+                    sender2 = new Button() { Content = "*" };
+                    Button_Opieration(sender2, null);
+                    break;
+
+                default:
                     break;
             }
         }

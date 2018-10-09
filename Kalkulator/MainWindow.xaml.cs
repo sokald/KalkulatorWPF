@@ -262,6 +262,39 @@ namespace Kalkulator
                     TB.Text = TB.Text + "0";
                     break;
 
+                case Key.D1:
+                    TB.Text = TB.Text + "1";
+                    break;
+                case Key.D2:
+                    TB.Text = TB.Text + "2";
+                    break;
+                case Key.D3:
+                    TB.Text = TB.Text + "3";
+                    break;
+
+                case Key.D4:
+                    TB.Text = TB.Text + "4";
+                    break;
+                case Key.D5:
+                    TB.Text = TB.Text + "5";
+                    break;
+                case Key.D6:
+                    TB.Text = TB.Text + "6";
+                    break;
+
+                case Key.D7:
+                    TB.Text = TB.Text + "7";
+                    break;
+                case Key.D8:
+                    TB.Text = TB.Text + "8";
+                    break;
+                case Key.D9:
+                    TB.Text = TB.Text + "9";
+                    break;
+                case Key.D0:
+                    TB.Text = TB.Text + "0";
+                    break;
+
                 //button for division
                 case Key.Divide:
                     Button sender2;
@@ -305,7 +338,7 @@ namespace Kalkulator
                     break;
 
                 // button for comma
-                case Key.OemComma:
+                case Key.Decimal:
                     Button_Click_comma(null, null);
                     break;
 
